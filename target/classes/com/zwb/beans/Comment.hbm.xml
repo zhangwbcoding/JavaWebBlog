@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >  
+  
+<hibernate-mapping package="com.zwb.beans">  
+    <class name="Comment" table="comment">  
+        <id name="commentid" column="commentid">  
+            <generator class="uuid"></generator>
+        </id>  
+        <property name="content" column="content" type="java.lang.String"   not-null="true" /> 
+        <property name="created_at" column="created_at" type="java.lang.Long"  not-null="true"  />  
+        <property name="blogid" column="blogid" type="java.lang.String"  not-null="true"  />  
+        <property name="blogtitle" column="blogtitle" type="java.lang.String"  not-null="true"  />  
+        <property name="userid" column="userid" type="java.lang.String"  not-null="true"  /> 
+        <property name="username" column="username" type="java.lang.String"  not-null="true"  />      
+        <property name="to_username" column="to_username" type="java.lang.String" />  
+        <property name="to_userid" column="to_userid" type="java.lang.String" /> 
+        <property name="check_status" column="check_status" type="java.lang.Integer" />                
+    </class>  
+</hibernate-mapping>  

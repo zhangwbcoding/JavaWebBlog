@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<!--     <package name="mystruts1" extends="struts-default" namespace="/mystruts1">   
+    <action name="test_*" class="com.action.TestAction" method="{1}">  
+        <result name="text_chain" type="chain">result_resultChain</result>  
+        <result name="text_redirect" type="redirect">result_resultRedirect</result>  
+    </action>  
+      
+    <action name="result_*"  class="com.action.ResultAction" method="{1}"></action>  
+</package>  -->
+    
+    
+    
+    
+<struts>	 
+	  <package name="login"  extends="struts-default">  	
+        <action name="login" class="LoginAction">  
+            <result name="success" type="redirect">/main</result>
+            <result name="login" >/login.jsp</result>            
+        </action> 
+       	
+        <action name="loginout" class="LoginAction" method="loginout">  
+            <result name="success" type="redirect">/login.jsp</result>            
+        </action> 
+	
+        <action name="register" class="LoginAction" method="register">  
+            <result name="success" type="redirect">/login.jsp</result>
+            <result name="error">/error.jsp</result>            
+        </action> 
+      </package>           
+    
+    <package name="main"  extends="struts-default">  
+        <action name="main" class="MainAction">  
+            <result name="success">/main.jsp</result>           
+        </action>       
+    </package>  
+        
+    <package name="newblog" extends="struts-default">  
+        <action name="newblog" class="NewBlogAction">  
+            <result name="success">/newblog.jsp</result>           
+        </action> 
+    
+        <action name="creatblog" class="CreatBlogAction">  
+            <result name="success" type="redirect">/main</result>
+            <result name="error">/error.jsp</result>           
+        </action>       
+    </package>
+    
+    <package name="blog"  extends="struts-default">  
+        <action name="blog" class="ShowBlogAction">  
+            <result name="success">/blog.jsp</result> 
+            <result name="error">/error.jsp</result>         
+        </action>       
+    </package>   
+    
+    <package name="user"  extends="struts-default">  
+        <action name="user" class="ShowUserAction">  
+            <result name="success">/user.jsp</result> 
+            <result name="error">/error.jsp</result>         
+        </action>
+    </package> 
+    
+    <package name="newcomment"  extends="struts-default">  
+        <action name="creatcomment" class="CreatCommentAction">  
+            <result name="success" type="redirectAction" >/blog</result> 
+            <result name="error">/error.jsp</result>         
+        </action>       
+    </package>
+    
+     <package name="manage" namespace="/manage" extends="struts-default">
+    	<action name="blogs" class="ManageAction" >
+    		<result name="success">/manageblogs.jsp</result>
+    	</action>
+    	<action name="users" class="ManageAction" method="manageUsers">
+    		<result name="success">/manageusers.jsp</result>
+    	</action>
+    	<action name="comments" class="ManageAction" method="manageComments">
+    		<result name="success">/managecomments.jsp</result>
+    	</action>
+    	<action name="delete_blog" class="ManageAction" method="deleteBlogs">
+    		<result name="success" type="redirect">/manage/blogs</result>
+    	</action>
+    	<action name="delete_comment" class="ManageAction" method="deleteComments">
+    		<result name="success" type="redirect">/manage/comments</result>
+    	</action>
+    </package> 
+    
+    <package name="edit" namespace="/edit" extends="struts-default">
+    	<action name="show_blog" class="EditBlogAction">
+    		<result name="success">/editblog.jsp</result>
+    	</action>
+    	<action name="update_blog" method="update" class="EditBlogAction">
+    		<result name="success" type="redirect">/main</result>
+    	</action>
+    </package>
+   
+   
+   
+   
+   
+   
+    
+    <package name="test"  extends="json-default">
+    	<action name="ajaxtext" class="AjaxTestAction">
+    		<result name="success" type="json"></result>
+    	</action>
+
+    </package>
+    
+    
+</struts>  
