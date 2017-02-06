@@ -65,7 +65,7 @@
     
     <package name="newcomment"  extends="struts-default">  
         <action name="creatcomment" class="CreatCommentAction">  
-            <result name="success" type="redirectAction" >/blog</result> 
+            <result name="success" type="redirectAction" >blog</result> 
             <result name="error">/error.jsp</result>         
         </action>       
     </package>
