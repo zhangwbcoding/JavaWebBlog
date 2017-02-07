@@ -86,6 +86,7 @@
     	<action name="delete_comment" class="ManageAction" method="deleteComments">
     		<result name="success" type="redirect">/manage/comments</result>
     	</action>
+    	
     </package> 
     
     <package name="edit" namespace="/edit" extends="struts-default">
@@ -104,10 +105,10 @@
    
     
     <package name="test"  extends="json-default">
-    	<action name="ajaxtext" class="AjaxTestAction">
-    		<result name="success" type="json"></result>
+    	<action name="ajaxGetUser" class="AjaxTestAction" >
+    		<result name="postuser" type="json"></result>
     	</action>
-
+ 
     </package>
     
     

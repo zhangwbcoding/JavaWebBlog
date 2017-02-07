@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户管理</title>
+
 </head>
 <body>
 <div>
@@ -27,7 +28,7 @@
 	    <tr>
 	      <td><s:a href="/MavenTest/user?userid=%{userId}"><s:property value="username"/></s:a></td>
 	      <td><s:property value="created_at"/></td>
-	      <td><s:property value="admin"/></td>
+	      <td><s:property  value="admin"/></td>
 	      <td><s:a href="/MavenTest/manage/addadmin?userid=%{userId}">授权</s:a></td>
 	      <td><a href="/MavenTest/manage/removeadmin?userid=%{userId}>">移除</a></td>     
 	    </tr>
