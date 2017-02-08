@@ -23,15 +23,17 @@
 		});
 		
 		$("#submitUser").click(function(){
-			var param = $("#subUserForm").serialize();
 			$.ajax({
-				url:"ajaxGetUser",
+				url:"getuseraction",
 				type:"post",
-				data:param,
+				data:{},
 				datatype:"json",
 				success:function(data){
-					alert(data.length);
-					$("#allUser").append("<div>提交了：id:" + data.user.userId + ", name: " + data.user.username +"</div>");  
+					$.each(data,function(i,user){
+						
+						$("#allUser").append("<div>遍历："+user.username+","+user.userId+"</div>");
+					});
+					
 				}
 			});
 		});
