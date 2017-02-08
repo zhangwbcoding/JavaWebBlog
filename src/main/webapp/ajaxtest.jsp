@@ -8,30 +8,21 @@
 <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#getUser").click(function(){
+
+		
+	
+		$("#submitUser").click(function(){
+			alert("ok");
 			$.ajax({
 				url:"ajaxGetUser",
 				type:"post",
-				data:{},
+				data:"{}",
 				datatype:"json",
 				success:function(data){
-					$("#allUser").append("<div>输出了：id:" + data.userId + ", name: " + data.username + "</div>");  
-	            }  
-				
-				
-			});
-		});
-		
-		$("#submitUser").click(function(){
-			$.ajax({
-				url:"getuseraction",
-				type:"post",
-				data:{},
-				datatype:"json",
-				success:function(data){
-					$.each(data,function(i,user){
+					alert("zhixing huidao");
+					$.each(data,function(i,eachone){
 						
-						$("#allUser").append("<div>遍历："+user.username+","+user.userId+"</div>");
+						$("#allUser").append("<div>遍历："+eachone+","+eachone+"</div>");
 					});
 					
 				}
@@ -42,10 +33,6 @@
 </head>
 <body>
 <div>
-        <form id="subUserForm">  
-        <input type="text" name="user.username" id="name"/>  
-        <input type="text" name="user.userId" id="id"/>  
-        </form> 
 		<input type="button" value="get" id="getUser">		
 		<input type="button" value="submit" id="submitUser">
 </div>

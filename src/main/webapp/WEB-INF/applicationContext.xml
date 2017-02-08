@@ -151,4 +151,5 @@
 	<bean id="AjaxTestAction" class="com.zwb.action.AjaxTestAction" scope="prototype">
 	</bean>
 	
+	
 </beans>  

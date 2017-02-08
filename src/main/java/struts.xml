@@ -105,10 +105,8 @@
    
     
     <package name="test"  extends="json-default">
-    	<action name="getuseraction" class="AjaxTestAction" >
-    		<result  type="json">
-    			<param name="root">resultTree</param>
-    		</result>
+    	<action name="ajaxGetUser" class="AjaxTestAction" >
+    		<result name="success" type="json"></result>
     	</action>
  
     </package>
