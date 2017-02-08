@@ -34,10 +34,6 @@ public class AjaxTestAction implements Action {
 
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println(user.getUsername());
-		JSONObject userjson = JSONObject.fromObject(user);
-		System.out.println(userjson);
-		jsonString = userjson.toString();
 		return "postuser";
 	}
 

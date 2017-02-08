@@ -30,7 +30,7 @@
 				data:param,
 				datatype:"json",
 				success:function(data){
-					alert(data);
+					alert(data.length);
 					$("#allUser").append("<div>提交了：id:" + data.user.userId + ", name: " + data.user.username +"</div>");  
 				}
 			});
