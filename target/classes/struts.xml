@@ -106,7 +106,8 @@
     
     <package name="test"  extends="json-default">
     	<action name="ajaxGetUser" class="AjaxTestAction" >
-    		<result name="postuser" type="json"></result>
+    		<result name="success" type="json">
+    		</result>
     	</action>
  
     </package>
