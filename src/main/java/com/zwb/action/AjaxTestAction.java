@@ -1,6 +1,5 @@
 package com.zwb.action;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.opensymphony.xwork2.Action;
@@ -16,7 +15,7 @@ public class AjaxTestAction implements Action {
 
 
 	private String param1;
-	private String param2;	
+	//private String param2;	
 
 
 	
@@ -87,7 +86,10 @@ public class AjaxTestAction implements Action {
 	}
 
 
-
+	public String test1() throws Exception {
+		System.out.println("in test1");
+		return "success";
+	}
 
 
 

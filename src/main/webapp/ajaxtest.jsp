@@ -14,7 +14,7 @@
 		$("#submitUser").click(function(){
 			alert("ok");
 			$.ajax({
-				url:"ajaxGetUser",
+				url:"ajaxGetUser_test1",
 				type:"post",
 				data:"{}",
 				datatype:"json",
