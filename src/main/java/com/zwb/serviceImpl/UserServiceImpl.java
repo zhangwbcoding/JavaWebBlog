@@ -9,9 +9,17 @@ import com.zwb.service.UserService;
 
 public class UserServiceImpl implements UserService {
 	private UserDaoImpl userDao;
+	private GeneralUtilsImpl gui;
 	
 	
-	
+	public GeneralUtilsImpl getGui() {
+		return gui;
+	}
+
+	public void setGui(GeneralUtilsImpl gui) {
+		this.gui = gui;
+	}
+
 	public UserDaoImpl getUserDao() {
 		return userDao;
 	}
@@ -39,7 +47,7 @@ public class UserServiceImpl implements UserService {
 	
 	public void saveUser(User user){
 			Calendar calendar =Calendar.getInstance();
-			user.setCreated_at(calendar.getTime().getTime());
+			user.setCreated_at(calendar.getTime().getTime()+"");
 			user.setAdmin(0);
 			userDao.save(user);
 	}
@@ -58,12 +66,26 @@ public class UserServiceImpl implements UserService {
 
 	public User getUser(String id) {
 		// TODO Auto-generated method stub
-		return userDao.get(id);
+		User user =  userDao.get(id);
+		user.setCreated_at(gui.timeConvert(user.getCreated_at()));
+		return user;
 	}
 
 	public User getUserByName(String name) {
 		// TODO Auto-generated method stub
-		return userDao.findByName(name);
+
+		User user =  userDao.findByName(name);
+		user.setCreated_at(gui.timeConvert(user.getCreated_at()));
+		return user;
+	}
+
+	public List<User> showUsers() {
+		// TODO Auto-generated method stub
+		List<User> userlist = userDao.findAllUser();
+		for (User user : userlist){
+			user.setCreated_at(gui.timeConvert(user.getCreated_at()));
+		}
+		return userlist;
 	}
 
 

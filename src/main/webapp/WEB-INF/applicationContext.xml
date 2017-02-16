@@ -65,6 +65,7 @@
     <!-- ~~~~~~~~用户服务组件~~~~~~~~ -->
      <bean id="UserServiceImpl" class="com.zwb.serviceImpl.UserServiceImpl"> 
         <property name="userDao" ref="userDaoImpl"/>
+        <property name="gui" ref="GeneralUtilsImpl"></property>
     </bean>
         <bean id="userDaoImpl" class="com.zwb.daoImpl.UserDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
@@ -73,6 +74,7 @@
     <!-- ~~~~~~~~日志服务组件~~~~~~~~ -->
     <bean id="BlogServiceImpl" class="com.zwb.serviceImpl.BlogServiceImpl"> 
         <property name="blogDao" ref="blogDaoImpl"/>
+        <property name="gui" ref="GeneralUtilsImpl"></property>
     </bean>                  
     <bean id="blogDaoImpl" class="com.zwb.daoImpl.BlogDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
@@ -81,6 +83,7 @@
     <!-- ~~~~~~~~评论服务组件~~~~~~~~ -->
     <bean id="CommentServiceImpl" class="com.zwb.serviceImpl.CommentServiceImpl"> 
         <property name="commentDao" ref="commentDaoImpl"/>
+        <property name="gui" ref="GeneralUtilsImpl"></property>        
     </bean>                  
     <bean id="commentDaoImpl" class="com.zwb.daoImpl.CommentDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
@@ -88,7 +91,7 @@
     
     
           
-    <!-- ~~~~~~~~cookie组件~~~~~~~~ -->  
+    <!-- ~~~~~~~~通用功能组件~~~~~~~ -->  
     <bean id="GeneralUtilsImpl" class="com.zwb.serviceImpl.GeneralUtilsImpl">
     </bean> 
         
@@ -151,5 +154,6 @@
 	<bean id="AjaxTestAction" class="com.zwb.action.AjaxTestAction" scope="prototype">
 	</bean>
 	
-	
+	<bean id="test1" class="com.zwb.action.test1" scope="prototype">
+	</bean>
 </beans>  

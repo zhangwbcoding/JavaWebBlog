@@ -82,7 +82,7 @@ public class ManageAction implements Action {
 	}
 	
 	public String manageUsers() throws Exception{
-		userlist = us.getUserDao().findAllUser();
+		userlist = us.showUsers();
 		return SUCCESS;
 	}
 	

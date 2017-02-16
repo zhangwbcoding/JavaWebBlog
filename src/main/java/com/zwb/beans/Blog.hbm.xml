@@ -14,7 +14,7 @@
             not-null="true"  />  
         <property name="content" column="content" type="java.lang.String"  
             not-null="true"  />      
-        <property name="created_at" column="created_at" type="java.lang.Long"  
+        <property name="created_at" column="created_at" type="java.lang.String"  
             not-null="true"  /> 
         <property name="userid" column="userid" type="java.lang.String"  
             not-null="true"  /> 

@@ -1,16 +1,26 @@
 package com.zwb.action;
 
+import java.io.Serializable;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionSupport;
 import com.zwb.beans.User;
 import com.zwb.serviceImpl.GeneralUtilsImpl;
 import com.zwb.serviceImpl.UserServiceImpl;
 
-public class LoginAction implements Action {
+public class LoginAction  extends ActionSupport implements Serializable{
 
-	 private User user;
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+
+	private User user;
      private UserServiceImpl us;
      private GeneralUtilsImpl gu;
      private String tip;
@@ -48,8 +58,17 @@ public class LoginAction implements Action {
 		public void setGu(GeneralUtilsImpl gu) {
 			this.gu = gu;
 		}
-
-
+		
+		@Override
+		public void validate(){
+			System.out.println("in validate");
+			System.out.println(user.getUsername());
+			if (user.getUsername()==null||"".equals(user.getUsername())){
+				addFieldError("username","用户名不能为空！");
+			}
+			if(user.getPassword()==null||"".equals(user.getPassword()))
+				addFieldError("password","密码不能为空！");
+		}
  
 	    public String execute() throws Exception {  
 	        // TODO Auto-generated method stub

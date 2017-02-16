@@ -5,7 +5,7 @@ public class Blog {
 	private String title;
 	private String summary;
 	private String content;
-	private long created_at;
+	private String created_at;
 	private String userid;
 	private String username;
 	
@@ -29,10 +29,10 @@ public class Blog {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public long getCreated_at() {
+	public String getCreated_at() {
 		return created_at;
 	}
-	public void setCreated_at(long created_at) {
+	public void setCreated_at(String created_at) {
 		this.created_at = created_at;
 	}
 	public String getUserid() {

@@ -23,10 +23,9 @@ text-align:center; /* 文字等内容居中 */
 	<h3>
 	欢迎注册
 	</h3>
-    <s:form action="register">  
-        <s:textfield name="user.username" label="用户名"></s:textfield> <s:fielderror fieldName="username"/><br/> 
-        <s:password name="user.password" label="密码"></s:password>
-        <s:password name="passwordr" label="重复密码"></s:password>           
+    <s:form action="test1">  
+        <s:textfield name="username" label="用户名"></s:textfield> <s:fielderror fieldName="username"/><br/> 
+        <s:password name="password" label="密码"></s:password>          
         <s:submit value="注册"></s:submit>  
     </s:form> 
 </div>

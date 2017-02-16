@@ -11,5 +11,5 @@ public interface GeneralUtils {
 	public void sessionSet(String attrName,Object arg);
 	public Object sessionGet(String attrName);
 	public void sessionRemove(String attrName);
-	
+	public String timeConvert(String rowTime);
 }

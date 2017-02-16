@@ -12,7 +12,7 @@
             not-null="true" length="16"/>  
         <property name="password" column="password" type="java.lang.String"  
             not-null="true" length="16" />  
-        <property name="created_at" column="created_at" type="java.lang.Long"  
+        <property name="created_at" column="created_at" type="java.lang.String"  
             not-null="true"  />      
         <property name="admin" column="admin" type="java.lang.Integer"  
             not-null="true"  /> 

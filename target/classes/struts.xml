@@ -28,8 +28,14 @@
 	
         <action name="register" class="LoginAction" method="register">  
             <result name="success" type="redirect">/login.jsp</result>
-            <result name="error">/error.jsp</result>            
+            <result name="error">/error.jsp</result>   
+            <result name="input">/register.jsp</result>         
         </action> 
+        
+        <action name="test1" class="test1" >  
+            <result name="success" type="redirect">/login.jsp</result>   
+            <result name="input">/logintest1.jsp</result>         
+        </action>
       </package>           
     
     <package name="main"  extends="struts-default">  
@@ -106,7 +112,7 @@
     
     <package name="test"  extends="json-default">
     	<action name="ajaxGetUser" class="AjaxTestAction" >
-    		<result name="postuser" type="json"></result>
+    		<result name="success" type="json"></result>
     	</action>
  
     </package>

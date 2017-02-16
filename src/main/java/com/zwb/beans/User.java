@@ -4,7 +4,7 @@ public class User {
 	private String userId;
 	private String username;
 	private String password;
-	private long created_at;
+	private String created_at;
 	private int admin;
 	
 	
@@ -26,10 +26,10 @@ public class User {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public long getCreated_at() {
+	public String getCreated_at() {
 		return created_at;
 	}
-	public void setCreated_at(long created_at) {
+	public void setCreated_at(String created_at) {
 		this.created_at = created_at;
 	}
 	public int getAdmin() {

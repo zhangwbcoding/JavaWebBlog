@@ -1,5 +1,9 @@
 package com.zwb.serviceImpl;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -87,8 +91,35 @@ public class GeneralUtilsImpl implements GeneralUtils {
 	public void sessionRemove(String attrName) {
 		// TODO Auto-generated method stub
 		getSession().removeAttribute(attrName);
+	}
+
+	public String timeConvert(String rowTime) {
+		// TODO Auto-generated method stub
+		Calendar calendar =  Calendar.getInstance();
+		Long now = calendar.getTime().getTime();
+		Long time =  Long.parseLong(rowTime);
+		Long delta = now-time;
+		if (delta<=1000*60){
+			return "1分钟前";
+		}
+		else if (delta<=1000*60*5){
+			return "5分钟前";
+		}
+		else if (delta <= 1000*60*10){
+			return "10分钟前";
+		}
+		else if (delta<=1000*60*15){
+			return "15分钟前";
+		}
+		else if (delta<=1000*60*30){
+			return "30分钟前";
+		}
+		else{
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日  HH:mm:ss");
+			
+			return sdf.format(new Date(time));
+		}
 	}  
-	
 	
 
 		

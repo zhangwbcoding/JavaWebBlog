@@ -42,7 +42,7 @@ public class AjaxTestAction implements Action {
 		list.add("bbzzz");
 		list.add("b");
 
-		System.out.println("=====>");
+		System.out.println(" ====>");
 		System.out.println(list);
 		return "success";
 	}

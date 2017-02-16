@@ -3,7 +3,7 @@ package com.zwb.beans;
 public class Comment {
 	private String commentid;
 	private String content;
-	private long created_at;
+	private String created_at;
 	private String blogid;
 	private String blogtitle;
 	private String userid;
@@ -23,10 +23,10 @@ public class Comment {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public long getCreated_at() {
+	public String getCreated_at() {
 		return created_at;
 	}
-	public void setCreated_at(long created_at) {
+	public void setCreated_at(String created_at) {
 		this.created_at = created_at;
 	}
 	public String getBlogid() {
