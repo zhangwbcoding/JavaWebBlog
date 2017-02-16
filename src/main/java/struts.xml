@@ -111,8 +111,9 @@
    
     
     <package name="test"  extends="json-default">
-    	<action name="ajaxGetUser" class="AjaxTestAction" >
-    		<result name="success" type="json"></result>
+    	<action name="ajaxGetUser_*" class="AjaxTestAction"  method="{1}">
+    		<result name="success" type="json">
+    		</result>
     	</action>
  
     </package>

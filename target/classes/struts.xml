@@ -111,8 +111,14 @@
    
     
     <package name="test"  extends="json-default">
+<<<<<<< HEAD
     	<action name="ajaxGetUser" class="AjaxTestAction" >
     		<result name="success" type="json"></result>
+=======
+    	<action name="ajaxGetUser_*" class="AjaxTestAction"  method="{1}">
+    		<result name="success" type="json">
+    		</result>
+>>>>>>> 66e51f941b5a11e9d2dc3189e8ab25abc74303a3
     	</action>
  
     </package>

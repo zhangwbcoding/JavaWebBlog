@@ -14,12 +14,13 @@
 		$("#submitUser").click(function(){
 			alert("ok");
 			$.ajax({
-				url:"ajaxGetUser",
+				url:"ajaxGetUser_test1",
 				type:"post",
 				data:"{}",
 				datatype:"json",
 				success:function(data){
 					alert("zhixing huidao");
+					alert(data);
 					$.each(data,function(i,eachone){
 						
 						$("#allUser").append("<div>遍历："+eachone+","+eachone+"</div>");
