@@ -32,6 +32,8 @@
             <result name="input">/register.jsp</result>         
         </action> 
         
+        
+        
         <action name="test1" class="test1" >  
             <result name="success" type="redirect">/login.jsp</result>   
             <result name="input">/logintest1.jsp</result>         
@@ -110,17 +112,18 @@
    
    
     
-    <package name="test"  extends="json-default">
-<<<<<<< HEAD
-    	<action name="ajaxGetUser" class="AjaxTestAction" >
-    		<result name="success" type="json"></result>
-=======
-    	<action name="ajaxGetUser_*" class="AjaxTestAction"  method="{1}">
+    <package name="ajax"  extends="json-default">
+    	<action name="checkUsername" class="LoginAction" method="checkUsername">
     		<result name="success" type="json">
+    			<param name="root">check_result</param>
     		</result>
->>>>>>> 66e51f941b5a11e9d2dc3189e8ab25abc74303a3
     	</action>
- 
+    
+    	<action name="ajaxGetUser_*" class="AjaxTestAction"  method="{1}">
+    		<result name="success" type="json">    			
+    		</result>
+    	</action>
+		
     </package>
     
     

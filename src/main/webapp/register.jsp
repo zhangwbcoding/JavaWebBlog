@@ -8,12 +8,28 @@
 <title>注册</title>
 <style type="text/css"> 
 .align-center{ 
-margin:0 auto; /* 居中 这个是必须的，，其它的属性非必须 */ 
-width:290px; /* 给个宽度 顶到浏览器的两边就看不出居中效果了 */ 
-text-align:center; /* 文字等内容居中 */ 
+margin:0 auto;
+width:290px;  
+text-align:center; 
 } 
 </style> 
-
+<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#in_uname").blur(function(){
+			var param = $("#in_uname").serialize();
+			$.ajax({
+				url:"checkUsername",
+				type:"post",
+				data:param,
+				datatype:"text",
+				success:function(data){
+						$("#msg").html("<b>"+data+"</b>");
+				}
+			});
+		});
+	});
+</script>
 </head>
 <body>
 <s:a href="/MavenTest/main" >首页</s:a>
@@ -23,12 +39,17 @@ text-align:center; /* 文字等内容居中 */
 	<h3>
 	欢迎注册
 	</h3>
-    <s:form action="register">  
-        <s:textfield name="user.username" label="用户名"></s:textfield> <s:fielderror fieldName="username"/><br/> 
-        <s:password name="user.password" label="密码"></s:password>
-        <s:password name="passwordr" label="重复密码"></s:password>           
-        <s:submit value="注册"></s:submit>  
-    </s:form> 
+	<div>
+	    <s:form action="register" >  
+	        <s:textfield name="user.username" label="用户名" id="in_uname"></s:textfield> <s:fielderror fieldName="username"/>
+	        <s:password name="user.password" label="密码"></s:password> <s:fielderror fieldName="password"/>
+	        <s:password name="passwordr" label="重复密码"></s:password>           
+	        <s:submit value="注册"></s:submit>  
+	    </s:form> 
+    </div>
+    <div id="msg">
+    </div>
+    
 </div>
 </body>
 </html>

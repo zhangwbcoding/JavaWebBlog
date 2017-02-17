@@ -1,12 +1,6 @@
 package com.zwb.action;
 
-import java.util.List;
-
 import com.opensymphony.xwork2.Action;
-import com.zwb.beans.User;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 
 
@@ -80,13 +74,11 @@ public class AjaxTestAction implements Action {
 		
 		
 
-<<<<<<< HEAD
+
 		System.out.println(" ====>");
-		System.out.println(list);
-=======
+//		System.out.println(list);
 		System.out.println("=====>");
 
->>>>>>> 66e51f941b5a11e9d2dc3189e8ab25abc74303a3
 		return "success";
 	}
 
