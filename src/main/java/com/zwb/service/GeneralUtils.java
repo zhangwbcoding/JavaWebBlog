@@ -12,4 +12,5 @@ public interface GeneralUtils {
 	public Object sessionGet(String attrName);
 	public void sessionRemove(String attrName);
 	public String timeConvert(String rowTime);
+	public String string2MD5(String strSrc);
 }

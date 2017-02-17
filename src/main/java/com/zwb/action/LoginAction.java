@@ -150,6 +150,7 @@ public class LoginAction  extends ActionSupport implements Serializable{
 			}
 		}
 		
+		//检查用户名是否存在
 		public String checkUsername() throws Exception{
 			if( us.userExistOrNot(user)){
 				 check_result = "该用户名已被注册！";

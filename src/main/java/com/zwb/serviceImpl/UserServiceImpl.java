@@ -10,7 +10,7 @@ import com.zwb.service.UserService;
 public class UserServiceImpl implements UserService {
 	private UserDaoImpl userDao;
 	private GeneralUtilsImpl gui;
-	
+
 	
 	public GeneralUtilsImpl getGui() {
 		return gui;
@@ -34,8 +34,9 @@ public class UserServiceImpl implements UserService {
 			return false;
 		}
 		else{
-			String password= userDao.findByName(user.getUsername()).getPassword();
-			if(user.getPassword().equals(password)){
+			String dbpw= userDao.findByName(user.getUsername()).getPassword();  //数据库保存的MD5密文密码
+			String MD5pw = gui.string2MD5(user.getUsername()+":"+user.getPassword()); 	//"账号：密码+SALT"加密		
+			if(MD5pw.equals(dbpw)){
 				return true;
 			}
 			else{
@@ -49,6 +50,10 @@ public class UserServiceImpl implements UserService {
 			Calendar calendar =Calendar.getInstance();
 			user.setCreated_at(calendar.getTime().getTime()+"");
 			user.setAdmin(0);
+			String MD5pw = gui.string2MD5(user.getUsername()+":"+user.getPassword());   //"账号：密码+SALT"加密	
+			user.setPassword(MD5pw);
+			System.out.println("in saveUser()");
+			System.out.println("md5 PW: " + user.getPassword());
 			userDao.save(user);
 	}
 	
@@ -79,6 +84,7 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	//获得所有用户
 	public List<User> showUsers() {
 		// TODO Auto-generated method stub
 		List<User> userlist = userDao.findAllUser();

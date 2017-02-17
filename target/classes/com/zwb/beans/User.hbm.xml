@@ -11,7 +11,7 @@
         <property name="username" column="username" type="java.lang.String"  
             not-null="true" length="16"/>  
         <property name="password" column="password" type="java.lang.String"  
-            not-null="true" length="16" />  
+            not-null="true" length="32" />  
         <property name="created_at" column="created_at" type="java.lang.String"  
             not-null="true"  />      
         <property name="admin" column="admin" type="java.lang.Integer"  

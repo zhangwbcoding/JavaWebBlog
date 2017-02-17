@@ -1,5 +1,7 @@
 package com.zwb.serviceImpl;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -17,6 +19,7 @@ import com.zwb.service.GeneralUtils;
 public class GeneralUtilsImpl implements GeneralUtils {
 
 	public static final String USER_COOKIE = "user_cookie";
+	private static final String SALT = "zwb_javablog";
 	
 	public Cookie addCookie(User user) {
 		// TODO Auto-generated method stub
@@ -118,6 +121,38 @@ public class GeneralUtilsImpl implements GeneralUtils {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyƒÍMM‘¬dd»’  HH:mm:ss");
 			
 			return sdf.format(new Date(time));
+		}
+	}
+
+
+	private  String bytes2Hex(byte[] bts) {  
+        StringBuffer des = new StringBuffer();  
+        String tmp = null;  
+        for (int i = 0; i < bts.length; i++) {  
+            tmp = (Integer.toHexString(bts[i] & 0xFF));  
+            if (tmp.length() == 1) {
+                des.append("0");
+            }  
+            des.append(tmp);
+        }  
+        return des.toString();
+    }
+	
+	@SuppressWarnings("finally")
+	public String string2MD5(String strSrc) {
+		// TODO Auto-generated method stub
+		strSrc += SALT;
+		String strDes = null;
+		try{
+			MessageDigest md = MessageDigest.getInstance("MD5"); 
+	        byte[] bt = strSrc.getBytes();  
+	        md.update(bt);  
+	        strDes = bytes2Hex(md.digest()); // to HexString  
+		}catch(NoSuchAlgorithmException ne){
+			ne.printStackTrace();
+		}finally{
+			System.out.println("in string2MD5:" + strDes );
+			return strDes;
 		}
 	}  
 	
