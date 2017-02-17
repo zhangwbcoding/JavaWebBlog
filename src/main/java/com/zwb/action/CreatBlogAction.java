@@ -14,6 +14,22 @@ public class CreatBlogAction implements Action {
 	private Blog blog;
 	private BlogServiceImpl bs;
 	
+	public Blog getBlog() {
+		return blog;
+	}
+
+	public void setBlog(Blog blog) {
+		this.blog = blog;
+	}
+
+	public BlogServiceImpl getBs() {
+		return bs;
+	}
+
+	public void setBs(BlogServiceImpl bs) {
+		this.bs = bs;
+	}
+	
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		try{
@@ -33,20 +49,6 @@ public class CreatBlogAction implements Action {
 		}
 	}
 
-	public Blog getBlog() {
-		return blog;
-	}
 
-	public void setBlog(Blog blog) {
-		this.blog = blog;
-	}
-
-	public BlogServiceImpl getBs() {
-		return bs;
-	}
-
-	public void setBs(BlogServiceImpl bs) {
-		this.bs = bs;
-	}
 
 }

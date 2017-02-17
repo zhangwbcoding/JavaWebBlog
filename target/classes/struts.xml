@@ -71,12 +71,7 @@
         </action>
     </package> 
     
-    <package name="newcomment"  extends="struts-default">  
-        <action name="creatcomment" class="CreatCommentAction">  
-            <result name="success" type="redirectAction" >blog</result> 
-            <result name="error">/error.jsp</result>         
-        </action>       
-    </package>
+
     
      <package name="manage" namespace="/manage" extends="struts-default">
     	<action name="blogs" class="ManageAction" >
@@ -118,6 +113,13 @@
     			<param name="root">check_result</param>
     		</result>
     	</action>
+        
+        <action name="creatcomment" class="CreatCommentAction">  
+            <result name="success" type="json">
+            	<param name="root">newcomment</param>
+            </result>       
+        </action>
+    
     
     	<action name="ajaxGetUser_*" class="AjaxTestAction"  method="{1}">
     		<result name="success" type="json">    			

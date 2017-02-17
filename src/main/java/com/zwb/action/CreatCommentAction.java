@@ -8,15 +8,30 @@ import com.zwb.serviceImpl.BlogServiceImpl;
 import com.zwb.serviceImpl.CommentServiceImpl;
 import com.zwb.serviceImpl.GeneralUtilsImpl;
 
+import net.sf.json.JSONObject;
+
 public class CreatCommentAction implements Action {
 	private Comment comment;
 	private String tip;
 	private GeneralUtilsImpl gu;
 	private CommentServiceImpl cs;
 	private BlogServiceImpl bs;
+	private String newcomment;
 	
 	
 	
+	public String getNewcomment() {
+		return newcomment;
+	}
+
+
+
+	public void setNewcomment(String newcomment) {
+		this.newcomment = newcomment;
+	}
+
+
+
 	public Comment getComment() {
 		return comment;
 	}
@@ -87,6 +102,8 @@ public class CreatCommentAction implements Action {
 			comment.setUsername(username);
 			comment.setBlogtitle(bs.showblog(comment.getBlogid()).getTitle());
 			cs.save(comment);
+			JSONObject jo = JSONObject.fromObject(comment);
+			newcomment = jo.toString();
 			return SUCCESS ;
 		}
 	}
