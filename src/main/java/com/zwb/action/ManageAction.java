@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.Action;
-import com.zwb.beans.Blog;
 import com.zwb.beans.Comment;
 import com.zwb.beans.User;
 import com.zwb.serviceImpl.BlogServiceImpl;
@@ -20,6 +19,7 @@ public class ManageAction implements Action {
 
 	private JSONArray json_userlist;
 	private JSONArray json_bloglist;
+	private JSONArray json_commentlist;
 	private String tip;
 	private String admin;
 	private BlogServiceImpl bs;
@@ -29,6 +29,14 @@ public class ManageAction implements Action {
 	
 	
 
+
+	public JSONArray getJson_commentlist() {
+		return json_commentlist;
+	}
+
+	public void setJson_commentlist(JSONArray json_commentlist) {
+		this.json_commentlist = json_commentlist;
+	}
 
 	public String getTip() {
 		return tip;
@@ -120,18 +128,18 @@ public class ManageAction implements Action {
 		return SUCCESS;
 	}
 	
-//	public String getAllComments() throws Exception{
-//		commentlist = cs.showComments();
-//		System.out.println(commentlist.size());
-//		return SUCCESS;
-//		
-//	}
+	public String getAllComments() throws Exception{
+		json_commentlist = JSONArray.fromObject(cs.showComments());
+		return SUCCESS;
+		
+	}
 	
 	public String deleteComments() throws Exception{
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String commentid =  (String) request.getParameter("commentid");
 		System.out.println("commentid:"+commentid);
 		cs.getCommentDao().deleteById(commentid);
+		tip = "É¾³ý³É¹¦£¡";
 		return SUCCESS;
 		
 	}	

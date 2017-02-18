@@ -8,6 +8,7 @@
 <body>
             <a href="/MavenTest/main" >首页</a>
             <a href="/MavenTest/newblog"> 创建日志</a>
+            <a href="https://github.com/zhangwbcoding/JavaWebBlog" target="_blank">源码 </a>
             <a href="/MavenTest/manage/blogs">管理</a>
             
 		<%

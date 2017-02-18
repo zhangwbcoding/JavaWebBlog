@@ -25,7 +25,7 @@
 		<s:iterator value="bloglist">
 			<div>
 			<h3><s:a href="/MavenTest/blog?blogid=%{blogid}"><s:property value="title"/></s:a></h3>
-			<h4><s:property value="username"/>  发表于：<s:property value="created_at"/></h4>
+			<h4>发表于：<s:property value="created_at"/></h4>
 			<p>
 			<s:property value="summary"/>
 			</p>

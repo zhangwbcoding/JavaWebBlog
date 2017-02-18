@@ -101,7 +101,11 @@
     			<param name="root">json_bloglist</param>
     		</result>
     	</action>
-    	
+    	<action name="getcomments" class="ManageAction" method="getAllComments">
+    		<result name="success" type="json">
+    			<param name="root">json_commentlist</param>
+    		</result>
+    	</action>
     	
     	<action name="addAdmin" class="ManageAction" method="addAdmin">
     		<result name="success" type="json">
@@ -121,7 +125,9 @@
     		</result>
     	</action>
     	<action name="delete_comment" class="ManageAction" method="deleteComments">
-    		<result name="success" type="redirect">/manage/comments</result>
+    		<result name="success" type="json">
+    			<param name="root">tip</param>
+    		</result>
     	</action>
     	
     </package> 

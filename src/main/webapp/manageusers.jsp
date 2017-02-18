@@ -70,8 +70,16 @@ $(document).ready(function(){
 		
 	
 </script>
+<style type="text/css"> 
+.align-center{ 
+margin:0 auto; /* 居中 这个是必须的，，其它的属性非必须 */ 
+width:450px; /* 给个宽度 顶到浏览器的两边就看不出居中效果了 */ 
+text-align:center; /* 文字等内容居中 */ 
+} 
+</style> 
 </head>
 <body>
+<div class="align-center">
 <div>
      <a href="/MavenTest/manage/comments" >评论</a>  
      <a href="/MavenTest/manage/blogs" >日志</a>
@@ -87,5 +95,6 @@ $(document).ready(function(){
       <th>操作</th>
     </tr>
 </table>
+</div>
 </body>
 </html>

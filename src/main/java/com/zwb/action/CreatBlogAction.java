@@ -44,7 +44,6 @@ public class CreatBlogAction implements Action {
 			return SUCCESS;
 		}
 		catch(Exception e){
-			e.printStackTrace();
 			return ERROR;
 		}
 	}
