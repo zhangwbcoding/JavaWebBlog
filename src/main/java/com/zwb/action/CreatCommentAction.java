@@ -16,18 +16,22 @@ public class CreatCommentAction implements Action {
 	private GeneralUtilsImpl gu;
 	private CommentServiceImpl cs;
 	private BlogServiceImpl bs;
-	private String newcomment;
+	private JSONObject jo;
 	
 	
 	
-	public String getNewcomment() {
-		return newcomment;
+
+
+
+
+	public JSONObject getJo() {
+		return jo;
 	}
 
 
 
-	public void setNewcomment(String newcomment) {
-		this.newcomment = newcomment;
+	public void setJo(JSONObject jo) {
+		this.jo = jo;
 	}
 
 
@@ -102,8 +106,8 @@ public class CreatCommentAction implements Action {
 			comment.setUsername(username);
 			comment.setBlogtitle(bs.showblog(comment.getBlogid()).getTitle());
 			cs.save(comment);
-			JSONObject jo = JSONObject.fromObject(comment);
-			newcomment = jo.toString();
+			comment.setCreated_at("¸Õ¸Õ");
+			jo = JSONObject.fromObject(comment);
 			return SUCCESS ;
 		}
 	}

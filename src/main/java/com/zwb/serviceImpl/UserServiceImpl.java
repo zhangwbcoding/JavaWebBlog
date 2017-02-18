@@ -69,10 +69,10 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}
 
-	public User getUser(String id) {
+	public User getUser(String id) {          //通过us.getUser()方法获得的时间转换后的结果！！
 		// TODO Auto-generated method stub
 		User user =  userDao.get(id);
-		user.setCreated_at(gui.timeConvert(user.getCreated_at()));
+		user.setCreated_at(gui.timeConvert(user.getCreated_at()));          //转换时间格式
 		return user;
 	}
 
@@ -92,6 +92,11 @@ public class UserServiceImpl implements UserService {
 			user.setCreated_at(gui.timeConvert(user.getCreated_at()));
 		}
 		return userlist;
+	}
+
+	public void updateUser(User user) {
+		// TODO Auto-generated method stub
+		userDao.update(user);
 	}
 
 

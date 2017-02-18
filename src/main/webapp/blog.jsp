@@ -17,10 +17,8 @@ $(document).ready(function(){
 			type:"post",
 			data:param,
 			datatype:"json",
-			success:function(data){
-				alert(data);
-				alert(data.username);
-				$("#list").append("<li><div><h4><a href=\"/MavenTest/user?userid="+data.userid+"\">"+data.username+"</a>  评论与："+data.created_at+"</h4></div><div>"+data.content+"</div></li><hr>");
+			success:function(data){			
+				$("#list").append("<li><div><h4><a href=\"/MavenTest/user?userid="+data.userid+"\">"+data.username+"</a>  评论于："+data.created_at+"</h4></div><div>"+data.content+"</div></li><hr>");
 			},
 			error:function(){
 				alert("请先登录！");

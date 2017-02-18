@@ -74,17 +74,51 @@
 
     
      <package name="manage" namespace="/manage" extends="struts-default">
-    	<action name="blogs" class="ManageAction" >
-    		<result name="success">/manageblogs.jsp</result>
+    	
+    	<action name="users" class="ManageAction" >
+    		<result name="success" type="redirect">/manageusers.jsp</result>
     	</action>
-    	<action name="users" class="ManageAction" method="manageUsers">
-    		<result name="success">/manageusers.jsp</result>
+    	
+    	<action name="blogs" class="ManageAction"  method="blogs">
+    		<result name="success" type="redirect">/manageblogs.jsp</result>
     	</action>
-    	<action name="comments" class="ManageAction" method="manageComments">
-    		<result name="success">/managecomments.jsp</result>
+
+    	<action name="comments" class="ManageAction" method="comments">
+    		<result name="success" type="redirect">/managecomments.jsp</result>
     	</action>
+    	
+    </package>
+    
+    <package name="manage_ajax"  extends="json-default">
+    
+    	<action name="getusers" class="ManageAction" method="getAllUsers">
+    		<result name="success" type="json">
+    			<param name="root">json_userlist</param>
+    		</result>
+    	</action>
+    	 <action name="getblogs" class="ManageAction" method="getAllBlogs">
+    		<result name="success" type="json">
+    			<param name="root">json_bloglist</param>
+    		</result>
+    	</action>
+    	
+    	
+    	<action name="addAdmin" class="ManageAction" method="addAdmin">
+    		<result name="success" type="json">
+    			<param name="root">admin</param>
+    		</result>
+    	</action>
+    	
+    	<action name="removeAdmin" class="ManageAction" method="removeAdmin">
+    		<result name="success" type="json">
+    			<param name="root">admin</param>
+    		</result>
+    	</action>
+    	
     	<action name="delete_blog" class="ManageAction" method="deleteBlogs">
-    		<result name="success" type="redirect">/manage/blogs</result>
+    		<result name="success" type="json">
+    			<param name="root">tip</param>
+    		</result>
     	</action>
     	<action name="delete_comment" class="ManageAction" method="deleteComments">
     		<result name="success" type="redirect">/manage/comments</result>
@@ -116,7 +150,7 @@
         
         <action name="creatcomment" class="CreatCommentAction">  
             <result name="success" type="json">
-            	<param name="root">newcomment</param>
+            	<param name="root">jo</param>
             </result>       
         </action>
     

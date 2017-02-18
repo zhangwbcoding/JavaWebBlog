@@ -7,6 +7,40 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>日志管理</title>
+<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<script type="text/javascript">	
+$(document).ready(function(){
+	$.ajax({
+		url:"getblogs",
+		type:"post",
+		data:"{}",
+		datatype:"json",
+		success:function(data){
+			$.each(data,function(i,value){
+				/* 		迭代输出 */
+				$("#each").append("<tr id=\"tr_"+i+"\"><td>"+value.title+"</td>"+"<td>"+value.username+"</td>"+"<td>"+value.created_at+"</td>"+"<td><a href=\"/MavenTest/edit/show_blog?blogid\="+value.blogid+"\">编辑</a></td><td><input type=\"button\" value=\"删除\" id=\"delete_"+i+"\"></td></tr>");
+				/* 绑定delete事件 */
+				$("#delete_"+i).click(function(){
+					alert("确认删除该文章？删除后不可恢复！");
+					var blogid = value.blogid;
+					var param = {"blogid":blogid};
+					$.ajax({
+						url:"delete_blog",
+						type:"post",
+						data:param,
+						datatype:"text",
+						success:function(){
+							$("#tr_"+i).hide();
+						}
+					});
+										
+				});
+			});
+		}
+	});
+});
+
+</script>
 </head>
 <body>
 <div>
@@ -15,7 +49,7 @@
      <a href="/MavenTest/manage/users" >用户</a>   
 </div>
 
-<table border="1">
+<table border="1" id="each">
     <tr>
       <th>标题</th>
       <th>作者</th>
@@ -23,15 +57,7 @@
       <th>操作</th>
       <th>操作</th>
     </tr>
-	<s:iterator value="bloglist">
-	    <tr>
-	      <td><s:a href="/MavenTest/blog?blogid=%{blogid}"><s:property value="title"/></s:a></td>
-	      <td><s:property value="username"/></td>
-	      <td><s:property value="created_at"/></td>
-	      <td><s:a href="/MavenTest/manage/delete_blog?blogid=%{blogid}">删除</s:a></td>
-	      <td><s:a href="/MavenTest/edit/show_blog?blogid=%{blogid}">编辑</s:a></td>     
-	    </tr>
-	</s:iterator>
+
 </table>
 </body>
 </html>

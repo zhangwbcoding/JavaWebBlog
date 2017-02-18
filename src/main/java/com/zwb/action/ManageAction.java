@@ -14,39 +14,44 @@ import com.zwb.serviceImpl.BlogServiceImpl;
 import com.zwb.serviceImpl.CommentServiceImpl;
 import com.zwb.serviceImpl.UserServiceImpl;
 
+import net.sf.json.JSONArray;
+
 public class ManageAction implements Action {
-	private List<Blog> bloglist;
-	private List<User> userlist;
-	private List<Comment> commentlist;
+
+	private JSONArray json_userlist;
+	private JSONArray json_bloglist;
+	private String tip;
+	private String admin;
 	private BlogServiceImpl bs;
 	private	UserServiceImpl us;
 	private CommentServiceImpl cs;
+
+	
 	
 
-	public List<Blog> getBloglist() {
-		return bloglist;
+
+	public String getTip() {
+		return tip;
 	}
 
-	public void setBloglist(List<Blog> bloglist) {
-		this.bloglist = bloglist;
+	public void setTip(String tip) {
+		this.tip = tip;
 	}
 
-	public List<User> getUserlist() {
-		return userlist;
+	public JSONArray getJson_bloglist() {
+		return json_bloglist;
 	}
 
-	public void setUserlist(List<User> userlist) {
-		this.userlist = userlist;
+	public void setJson_bloglist(JSONArray json_bloglist) {
+		this.json_bloglist = json_bloglist;
 	}
 
-
-
-	public List<Comment> getCommentlist() {
-		return commentlist;
+	public String getAdmin() {
+		return admin;
 	}
 
-	public void setCommentlist(List<Comment> commentlist) {
-		this.commentlist = commentlist;
+	public void setAdmin(String admin) {
+		this.admin = admin;
 	}
 
 	public BlogServiceImpl getBs() {
@@ -74,24 +79,53 @@ public class ManageAction implements Action {
 	public void setCs(CommentServiceImpl cs) {
 		this.cs = cs;
 	}
+	
+	
+	
+	
+	
+	
+	public JSONArray getJson_userlist() {
+		return json_userlist;
+	}
+
+	public void setJson_userlist(JSONArray json_userlist) {
+		this.json_userlist = json_userlist;
+	}
 
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		bloglist = bs.showBlogs();
 		return SUCCESS;
 	}
 	
-	public String manageUsers() throws Exception{
-		userlist = us.showUsers();
-		return SUCCESS;
-	}
 	
-	public String manageComments() throws Exception{
-		commentlist = cs.showComments();
-		System.out.println(commentlist.size());
+	public String blogs() throws Exception {
 		return SUCCESS;
 		
 	}
+	
+	public String comments() throws Exception {
+		return SUCCESS;
+		
+	}
+
+	public String getAllBlogs() throws Exception {
+		// TODO Auto-generated method stub
+		json_bloglist =JSONArray.fromObject( bs.showBlogs());
+		return SUCCESS;
+	}
+	
+	public String getAllUsers() throws Exception{
+		json_userlist =JSONArray.fromObject( us.showUsers());
+		return SUCCESS;
+	}
+	
+//	public String getAllComments() throws Exception{
+//		commentlist = cs.showComments();
+//		System.out.println(commentlist.size());
+//		return SUCCESS;
+//		
+//	}
 	
 	public String deleteComments() throws Exception{
 		HttpServletRequest request = ServletActionContext.getRequest();
@@ -112,7 +146,31 @@ public class ManageAction implements Action {
 			}
 		}
 		bs.getBlogDao().deleteById(blogid);
+		tip = "É¾³ý³É¹¦£¡";
 		return SUCCESS;
 		
+	}
+
+	public String addAdmin() throws Exception{
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String userid =  (String) request.getParameter("userid");
+		User user = us.getUserDao().get(userid);
+		System.out.println(user.getCreated_at());
+		user.setAdmin(1);
+		us.updateUser(user);
+		admin = "1";
+		return SUCCESS;
+	}
+	
+	public String removeAdmin() throws Exception{
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String userid =  (String) request.getParameter("userid");
+		System.out.println("========>"+userid);
+		User user = us.getUserDao().get(userid);
+		System.out.println(user.getCreated_at());
+		user.setAdmin(0);
+		us.updateUser(user);
+		admin = "0";
+		return SUCCESS;
 	}
 }
