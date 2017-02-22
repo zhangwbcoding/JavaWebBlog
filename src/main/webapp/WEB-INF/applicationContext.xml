@@ -74,7 +74,9 @@
     <!-- ~~~~~~~~日志服务组件~~~~~~~~ -->
     <bean id="BlogServiceImpl" class="com.zwb.serviceImpl.BlogServiceImpl"> 
         <property name="blogDao" ref="blogDaoImpl"/>
-        <property name="gui" ref="GeneralUtilsImpl"></property>
+        <property name="gui" ref="GeneralUtilsImpl"/>
+        <property name="commentDao" ref="commentDaoImpl"></property> 
+       
     </bean>                  
     <bean id="blogDaoImpl" class="com.zwb.daoImpl.BlogDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>

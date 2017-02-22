@@ -12,4 +12,6 @@ public interface UserService {
 	public User getUserByName(String name);
 	public List<User> showUsers();
 	public void updateUser(User user);
+	public void addAdmin(String id);
+	public void removeAdmin(String id);
 }

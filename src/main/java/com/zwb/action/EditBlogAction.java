@@ -12,10 +12,23 @@ import com.zwb.serviceImpl.BlogServiceImpl;
 public class EditBlogAction implements Action {
 
 	private Blog blog;
+	private String blogid;
 	private BlogServiceImpl bs;
 	
 	
 	
+	public String getBlogid() {
+		return blogid;
+	}
+
+
+
+	public void setBlogid(String blogid) {
+		this.blogid = blogid;
+	}
+
+
+
 	public Blog getBlog() {
 		return blog;
 	}
@@ -42,8 +55,6 @@ public class EditBlogAction implements Action {
 
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		HttpServletRequest request = ServletActionContext.getRequest();
-		String blogid = request.getParameter("blogid");
 		blog = bs.showblog(blogid);
 		return SUCCESS;
 	}

@@ -98,6 +98,24 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		userDao.update(user);
 	}
+	
+	//修改admin字段为1
+	@Override
+	public void addAdmin(String id) {
+		// TODO Auto-generated method stub
+		User user = userDao.get(id);
+		user.setAdmin(1);
+		this.updateUser(user);
+	}
+	
+	//修改admin字段为0
+	@Override
+	public void removeAdmin(String id) {
+		// TODO Auto-generated method stub
+		User user = userDao.get(id);
+		user.setAdmin(0);
+		this.updateUser(user);
+	}
 
 
 }

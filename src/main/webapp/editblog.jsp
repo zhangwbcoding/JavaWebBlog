@@ -7,13 +7,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>编辑日志</title>
+<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	alert("ready");
+	$("#title").val("ceshi!!!!");
+});
+
+</script>
 </head>
 <body>
 <div>
 	<form action="update_blog" method="post">
     	<label>标题</label>
 		<div>
-		<input type="text" name="blog.title" value="${blog.title}" >
+		<input type="text"  id="title" name="blog.title" value="${blog.title}" >
 		</div>
 		<label>摘要</label>
 		<div>

@@ -75,15 +75,15 @@
     
      <package name="manage" namespace="/manage" extends="struts-default">
     	
-    	<action name="users" class="ManageAction" >
+    	<action name="users" >
     		<result name="success" type="redirect">/manageusers.jsp</result>
     	</action>
     	
-    	<action name="blogs" class="ManageAction"  method="blogs">
+    	<action name="blogs" >
     		<result name="success" type="redirect">/manageblogs.jsp</result>
     	</action>
 
-    	<action name="comments" class="ManageAction" method="comments">
+    	<action name="comments">
     		<result name="success" type="redirect">/managecomments.jsp</result>
     	</action>
     	

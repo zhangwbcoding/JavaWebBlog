@@ -1,14 +1,6 @@
 package com.zwb.action;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.ServletActionContext;
-
 import com.opensymphony.xwork2.Action;
-import com.zwb.beans.Comment;
-import com.zwb.beans.User;
 import com.zwb.serviceImpl.BlogServiceImpl;
 import com.zwb.serviceImpl.CommentServiceImpl;
 import com.zwb.serviceImpl.UserServiceImpl;
@@ -22,6 +14,10 @@ public class ManageAction implements Action {
 	private JSONArray json_commentlist;
 	private String tip;
 	private String admin;
+	private String commentid;
+	private String blogid;
+	private String userid;
+	
 	private BlogServiceImpl bs;
 	private	UserServiceImpl us;
 	private CommentServiceImpl cs;
@@ -29,6 +25,30 @@ public class ManageAction implements Action {
 	
 	
 
+
+	public String getBlogid() {
+		return blogid;
+	}
+
+	public void setBlogid(String blogid) {
+		this.blogid = blogid;
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public String getCommentid() {
+		return commentid;
+	}
+
+	public void setCommentid(String commentid) {
+		this.commentid = commentid;
+	}
 
 	public JSONArray getJson_commentlist() {
 		return json_commentlist;
@@ -88,11 +108,7 @@ public class ManageAction implements Action {
 		this.cs = cs;
 	}
 	
-	
-	
-	
-	
-	
+
 	public JSONArray getJson_userlist() {
 		return json_userlist;
 	}
@@ -101,83 +117,63 @@ public class ManageAction implements Action {
 		this.json_userlist = json_userlist;
 	}
 
+	
+	
+	
+	//=========action逻辑方法==============
+	
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		return SUCCESS;
 	}
 	
-	
-	public String blogs() throws Exception {
-		return SUCCESS;
-		
-	}
-	
-	public String comments() throws Exception {
-		return SUCCESS;
-		
-	}
-
+	//获得博客list
 	public String getAllBlogs() throws Exception {
 		// TODO Auto-generated method stub
 		json_bloglist =JSONArray.fromObject( bs.showBlogs());
 		return SUCCESS;
 	}
 	
+	//获得用户List
 	public String getAllUsers() throws Exception{
 		json_userlist =JSONArray.fromObject( us.showUsers());
 		return SUCCESS;
 	}
 	
+	//获得评论list
 	public String getAllComments() throws Exception{
 		json_commentlist = JSONArray.fromObject(cs.showComments());
 		return SUCCESS;
 		
 	}
 	
+	//删除评论
 	public String deleteComments() throws Exception{
-		HttpServletRequest request = ServletActionContext.getRequest();
-		String commentid =  (String) request.getParameter("commentid");
-		System.out.println("commentid:"+commentid);
-		cs.getCommentDao().deleteById(commentid);
+		cs.deleteCommentById(commentid);
 		tip = "删除成功！";
 		return SUCCESS;
 		
 	}	
 
-	public String deleteBlogs() throws Exception{
-		HttpServletRequest request = ServletActionContext.getRequest();
-		String blogid =  (String) request.getParameter("blogid");
-		List<Comment> cl = cs.showBlogComments(blogid);
-		if(cl!=null){
-			for(Comment c : cl){
-				cs.getCommentDao().delete(c);
-			}
-		}
-		bs.getBlogDao().deleteById(blogid);
+	
+	//删除日志及其所有评论
+	public String deleteBlogs() throws Exception{	
+		bs.deleteBlogById(blogid);
 		tip = "删除成功！";
 		return SUCCESS;
 		
 	}
 
+	//添加管理员身份
 	public String addAdmin() throws Exception{
-		HttpServletRequest request = ServletActionContext.getRequest();
-		String userid =  (String) request.getParameter("userid");
-		User user = us.getUserDao().get(userid);
-		System.out.println(user.getCreated_at());
-		user.setAdmin(1);
-		us.updateUser(user);
+		us.addAdmin(userid);
 		admin = "1";
 		return SUCCESS;
 	}
 	
+	//删除管理员身份
 	public String removeAdmin() throws Exception{
-		HttpServletRequest request = ServletActionContext.getRequest();
-		String userid =  (String) request.getParameter("userid");
-		System.out.println("========>"+userid);
-		User user = us.getUserDao().get(userid);
-		System.out.println(user.getCreated_at());
-		user.setAdmin(0);
-		us.updateUser(user);
+		us.removeAdmin(userid);
 		admin = "0";
 		return SUCCESS;
 	}
