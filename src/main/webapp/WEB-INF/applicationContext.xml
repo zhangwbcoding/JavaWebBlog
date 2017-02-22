@@ -153,7 +153,5 @@
 	
 	<bean id="AjaxTestAction" class="com.zwb.action.AjaxTestAction" scope="prototype">
 	</bean>
-	
-	<bean id="test1" class="com.zwb.action.test1" scope="prototype">
-	</bean>
+
 </beans>  
