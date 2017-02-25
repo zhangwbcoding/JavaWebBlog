@@ -12,6 +12,8 @@ public interface BlogDao {
 	public void deleteById(String id);
 	public void delete(Blog blog);
 	public List<Blog> findAllBlog();
-	public long getBlogNumber();
+	public int getBlogNumber();
 	public List<Blog> findAllBlogsByUserid(String userid);
+	public List<Blog> getBlogByPage(int offset,int length);
+	
 }

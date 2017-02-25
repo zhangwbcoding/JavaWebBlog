@@ -16,7 +16,9 @@ $(document).ready(function(){
 		data:"{}",
 		datatype:"json",
 		success:function(data){
-			$.each(data,function(i,value){
+			var json_data = eval("("+data")");
+			alert(json_data.list);
+			$.each(json_data.list,function(i,value){
 				/* 		迭代输出 */
 				$("#each").append("<tr><td>"+value.username+"</td>"+"<td>"+value.created_at+"</td>"+"<td id=\"admin_"+i+"\">"+value.admin+"</td>"+"<td><input type=\"button\" value=\"授权\" id=\"add_id_"+i+"\" class=\"add\" ></td>   <td><input type=\"button\" value=\"移除\" id=\"remove_id_"+i+"\" class=\"remove\" ></td></tr>")
 				/* 绑定add_admin事件 */

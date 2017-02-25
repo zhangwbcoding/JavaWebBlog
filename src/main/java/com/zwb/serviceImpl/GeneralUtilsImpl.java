@@ -154,7 +154,9 @@ public class GeneralUtilsImpl implements GeneralUtils {
 			System.out.println("in string2MD5:" + strDes );
 			return strDes;
 		}
-	}  
+	}
+
+
 	
 
 		

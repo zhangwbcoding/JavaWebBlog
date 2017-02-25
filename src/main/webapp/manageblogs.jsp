@@ -9,11 +9,14 @@
 <title>日志管理</title>
 <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
 <script type="text/javascript">	
-$(document).ready(function(){
+function init(page){
+	alert("hello!");
+	var pageIndex = page;
+	var param = {"pageIndex":page};
 	$.ajax({
 		url:"getblogs",
 		type:"post",
-		data:"{}",
+		data:param,
 		datatype:"json",
 		success:function(data){
 			$.each(data,function(i,value){
@@ -38,6 +41,24 @@ $(document).ready(function(){
 			});
 		}
 	});
+}
+
+
+$(document).ready(function(){
+	var page = 1;
+	init(page);
+	
+	
+	$("#next").click(function(){
+		$("#each  tr:not(:first)").remove();
+		init(++page);
+	});
+	
+	$("#last").click(function(){
+		$("#each  tr:not(:first)").remove();
+		init(--page);
+	});
+
 });
 
 </script>
@@ -51,21 +72,29 @@ text-align:center; /* 文字等内容居中 */
 </head>
 <body>
 <div class="align-center">
-<div>
-     <a href="/MavenTest/manage/comments" >评论</a>  
-     <a href="/MavenTest/manage/blogs" >日志</a>
-     <a href="/MavenTest/manage/users" >用户</a>   
+	<div>
+	     <a href="/MavenTest/manage/comments" >评论</a>  
+	     <a href="/MavenTest/manage/blogs" >日志</a>
+	     <a href="/MavenTest/manage/users" >用户</a>   
+	</div>
+	
+	<table border="1" id="each">
+	    <tr>
+	      <th>标题</th>
+	      <th>作者</th>
+	      <th>创建时间</th>
+	      <th>操作</th>
+	      <th>操作</th>
+	    </tr>
+	</table>
+	
+	<input type="button"  id="last" value="上一页">
+	<input type="button"  id="next" value="下一页">
 </div>
 
-<table border="1" id="each">
-    <tr>
-      <th>标题</th>
-      <th>作者</th>
-      <th>创建时间</th>
-      <th>操作</th>
-      <th>操作</th>
-    </tr>
-</table>
-</div>
+
+
+
+
 </body>
 </html>

@@ -2,6 +2,8 @@ package com.zwb.daoImpl;
 
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
@@ -24,6 +26,10 @@ public class BlogDaoImpl implements BlogDao {
 		}
 		return ht;
 	} 
+	private Session getSession(){
+		return this.sessionFactory.openSession();
+	}
+	
 	
 	public Blog get(String id) {
 		// TODO Auto-generated method stub
@@ -57,15 +63,27 @@ public class BlogDaoImpl implements BlogDao {
 		return (List<Blog>)getHibernateTemplate().find("from Blog");
 	}
 
-	public long getBlogNumber() {
+	public int getBlogNumber() {
 		// TODO Auto-generated method stub
-		return (Long)getHibernateTemplate().find("select count(*) from Blog as b ").get(0);
+		Long num = (Long)getHibernateTemplate().find("select count(*) from Blog as b ").get(0);
+		return num.intValue();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Blog> findAllBlogsByUserid(String userid) {
 		// TODO Auto-generated method stub
 		return (List<Blog>)getHibernateTemplate().find("from Blog b where b.userid=?",userid);
+	}
+
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Blog> getBlogByPage(int offset, int length) {
+		// TODO Auto-generated method stub
+		Query query=(Query) getSession().createQuery("FROM Blog");
+		query.setFirstResult(offset).setMaxResults(length);
+		return (List<Blog>)query.list();
 	}
 
 }

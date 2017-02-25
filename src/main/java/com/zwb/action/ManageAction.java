@@ -1,6 +1,7 @@
 package com.zwb.action;
 
 import com.opensymphony.xwork2.Action;
+import com.zwb.beans.PageBean;
 import com.zwb.serviceImpl.BlogServiceImpl;
 import com.zwb.serviceImpl.CommentServiceImpl;
 import com.zwb.serviceImpl.UserServiceImpl;
@@ -17,14 +18,31 @@ public class ManageAction implements Action {
 	private String commentid;
 	private String blogid;
 	private String userid;
+	private int pageIndex;
 	
 	private BlogServiceImpl bs;
 	private	UserServiceImpl us;
 	private CommentServiceImpl cs;
-
+	private PageBean pageBean;
 	
 	
 
+
+	public PageBean getPageBean() {
+		return pageBean;
+	}
+
+	public void setPageBean(PageBean pageBean) {
+		this.pageBean = pageBean;
+	}
+
+	public int getPageIndex() {
+		return pageIndex;
+	}
+
+	public void setPageIndex(int pageIndex) {
+		this.pageIndex = pageIndex;
+	}
 
 	public String getBlogid() {
 		return blogid;
@@ -129,14 +147,17 @@ public class ManageAction implements Action {
 	
 	//获得博客list
 	public String getAllBlogs() throws Exception {
-		// TODO Auto-generated method stub
-		json_bloglist =JSONArray.fromObject( bs.showBlogs());
+		// TODO Auto-generated method stub	
+		System.out.println("pageIndex:"+pageIndex);
+		json_bloglist =JSONArray.fromObject(bs.getPageBean(pageIndex).getList());
+		System.out.println();
 		return SUCCESS;
 	}
 	
 	//获得用户List
 	public String getAllUsers() throws Exception{
-		json_userlist =JSONArray.fromObject( us.showUsers());
+		json_userlist =JSONArray.fromObject(us.showUsers());
+		
 		return SUCCESS;
 	}
 	
