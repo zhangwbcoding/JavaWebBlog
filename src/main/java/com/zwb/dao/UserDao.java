@@ -13,7 +13,8 @@ public interface UserDao {
 	public void delete(User user);
 	public User findByName(String name);
 	public List<User> findAllUser();
-	public long getUserNumber();
+	public int getUserNumber();
+	public List<User> getUserByPage(int offset,int length);
 	
 	
 }

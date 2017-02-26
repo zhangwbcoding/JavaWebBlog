@@ -2,6 +2,8 @@ package com.zwb.daoImpl;
 
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
@@ -25,7 +27,9 @@ public class UserDaoImpl  implements UserDao {
 		}
 		return ht;
 	} 
-	
+	private Session getSession(){
+		return this.sessionFactory.openSession();
+	}
 
 	public void save(User user) {
 		// TODO Auto-generated method stub
@@ -67,9 +71,19 @@ public class UserDaoImpl  implements UserDao {
 		return (List<User>)getHibernateTemplate().find("from User");
 	}
 
-	public long getUserNumber() {
+	public int getUserNumber() {
 		// TODO Auto-generated method stub
-		return (Long)getHibernateTemplate().find("select count(*) from User as u ").get(0);
+		Long num =  (Long)getHibernateTemplate().find("select count(*) from User as u ").get(0);
+		return num.intValue();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> getUserByPage(int offset, int length) {
+		// TODO Auto-generated method stub
+		Query query=(Query) getSession().createQuery("FROM User");
+		query.setFirstResult(offset).setMaxResults(length);
+		return (List<User>)query.list();
 	}
 
 }

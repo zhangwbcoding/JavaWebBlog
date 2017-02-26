@@ -12,6 +12,7 @@ public interface CommentDao {
 	public void delete(Comment comment);
 	public List<Comment> findAllComment();
 	public List<Comment> findAllCommentByBlogid(String blogid);
-	public long getCommentNumber();
+	public int getCommentNumber();
+	public List<Comment> getCommentByPage(int offset,int length);
 	
 }

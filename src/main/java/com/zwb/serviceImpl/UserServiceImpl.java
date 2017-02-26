@@ -3,6 +3,7 @@ package com.zwb.serviceImpl;
 import java.util.Calendar;
 import java.util.List;
 
+import com.zwb.beans.PageBean;
 import com.zwb.beans.User;
 import com.zwb.daoImpl.UserDaoImpl;
 import com.zwb.service.UserService;
@@ -115,6 +116,30 @@ public class UserServiceImpl implements UserService {
 		User user = userDao.get(id);
 		user.setAdmin(0);
 		this.updateUser(user);
+	}
+
+	@Override
+	public PageBean getPageBean(int pageIndex) {
+		// TODO Auto-generated method stub
+		int allRows = userDao.getUserNumber();   //总记录数
+		   System.out.println("allRow="+allRows);
+		   final int length = 4;    //每页记录数
+		   int totalPages = PageBean.countTotalPage(length,allRows);    //总页数
+		   final int offset = PageBean.countOffset(length,pageIndex);    //当前页开始记录		   
+		   final int currentPage = PageBean.countCurrentPage(pageIndex);   //当前页码(默认pageIndex为0转化为1)
+		   List<User> list = userDao.getUserByPage(offset, length);       //"一页"的记录
+			for (User user : list){
+				user.setCreated_at(gui.timeConvert(user.getCreated_at()));
+			}
+		   //把分页信息保存到Bean中
+		   PageBean pageBean = new PageBean();
+		   pageBean.setPageSize(6);    
+		   pageBean.setCurrentPage(currentPage);
+		   pageBean.setAllRows(allRows);
+		   pageBean.setAllPages(totalPages);
+		   pageBean.setList(list);
+		   pageBean.init();
+		   return pageBean;
 	}
 
 

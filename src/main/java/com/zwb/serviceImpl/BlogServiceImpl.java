@@ -107,7 +107,12 @@ public class BlogServiceImpl implements BlogService {
 		   int totalPages = PageBean.countTotalPage(length,allRows);    //总页数
 		   final int offset = PageBean.countOffset(length,pageIndex);    //当前页开始记录		   
 		   final int currentPage = PageBean.countCurrentPage(pageIndex);   //当前页码(默认pageIndex为0转化为1)
-		   List<Blog> list = blogDao.getBlogByPage(offset, length);       //"一页"的记录
+		   List<Blog> list = blogDao.getBlogByPage(offset, length);
+		   //设置时间字段格式
+			for (Blog blog : list){
+				blog.setCreated_at(gui.timeConvert(blog.getCreated_at()));
+			}
+		   //"一页"的记录
 		   //把分页信息保存到Bean中
 		   PageBean pageBean = new PageBean();
 		   pageBean.setPageSize(6);    

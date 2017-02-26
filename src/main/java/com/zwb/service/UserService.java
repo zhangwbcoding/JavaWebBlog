@@ -2,6 +2,7 @@ package com.zwb.service;
 
 import java.util.List;
 
+import com.zwb.beans.PageBean;
 import com.zwb.beans.User;
 
 public interface UserService {
@@ -14,4 +15,5 @@ public interface UserService {
 	public void updateUser(User user);
 	public void addAdmin(String id);
 	public void removeAdmin(String id);
+	public PageBean getPageBean(int pageIndex);
 }

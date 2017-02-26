@@ -6,13 +6,13 @@ import com.zwb.serviceImpl.BlogServiceImpl;
 import com.zwb.serviceImpl.CommentServiceImpl;
 import com.zwb.serviceImpl.UserServiceImpl;
 
-import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 public class ManageAction implements Action {
 
-	private JSONArray json_userlist;
-	private JSONArray json_bloglist;
-	private JSONArray json_commentlist;
+	private JSONObject json_userlist;
+	private JSONObject json_bloglist;
+	private JSONObject json_commentlist;
 	private String tip;
 	private String admin;
 	private String commentid;
@@ -68,11 +68,11 @@ public class ManageAction implements Action {
 		this.commentid = commentid;
 	}
 
-	public JSONArray getJson_commentlist() {
+	public JSONObject getJson_commentlist() {
 		return json_commentlist;
 	}
 
-	public void setJson_commentlist(JSONArray json_commentlist) {
+	public void setJson_commentlist(JSONObject json_commentlist) {
 		this.json_commentlist = json_commentlist;
 	}
 
@@ -84,11 +84,11 @@ public class ManageAction implements Action {
 		this.tip = tip;
 	}
 
-	public JSONArray getJson_bloglist() {
+	public JSONObject getJson_bloglist() {
 		return json_bloglist;
 	}
 
-	public void setJson_bloglist(JSONArray json_bloglist) {
+	public void setJson_bloglist(JSONObject json_bloglist) {
 		this.json_bloglist = json_bloglist;
 	}
 
@@ -127,11 +127,11 @@ public class ManageAction implements Action {
 	}
 	
 
-	public JSONArray getJson_userlist() {
+	public JSONObject getJson_userlist() {
 		return json_userlist;
 	}
 
-	public void setJson_userlist(JSONArray json_userlist) {
+	public void setJson_userlist(JSONObject json_userlist) {
 		this.json_userlist = json_userlist;
 	}
 
@@ -149,21 +149,19 @@ public class ManageAction implements Action {
 	public String getAllBlogs() throws Exception {
 		// TODO Auto-generated method stub	
 		System.out.println("pageIndex:"+pageIndex);
-		json_bloglist =JSONArray.fromObject(bs.getPageBean(pageIndex).getList());
-		System.out.println();
+		json_bloglist =JSONObject.fromObject(bs.getPageBean(pageIndex));
 		return SUCCESS;
 	}
 	
 	//获得用户List
 	public String getAllUsers() throws Exception{
-		json_userlist =JSONArray.fromObject(us.showUsers());
-		
+		json_userlist =JSONObject.fromObject(us.getPageBean(pageIndex));
 		return SUCCESS;
 	}
 	
 	//获得评论list
 	public String getAllComments() throws Exception{
-		json_commentlist = JSONArray.fromObject(cs.showComments());
+		json_commentlist = JSONObject.fromObject(cs.getPageBean(pageIndex));
 		return SUCCESS;
 		
 	}

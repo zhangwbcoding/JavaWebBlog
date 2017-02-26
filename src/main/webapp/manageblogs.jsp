@@ -9,17 +9,56 @@
 <title>日志管理</title>
 <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
 <script type="text/javascript">	
-function init(page){
-	alert("hello!");
-	var pageIndex = page;
-	var param = {"pageIndex":page};
+	var page = 1;
+	var currentPage = page;
+	var totalRows = 0;
+	var totalPages = 0;
+	var isFirstPage = true;
+	var isLastPage = false;
+	
+//获取后台返回页码信息，更新分页标签状态
+function UpdatePageStatus(data){
+	
+	totalRows = data.allRows;
+	totalPages = data.allPages;			
+	isFirstPage = data.firstPage;
+	isLastPage = data.lastPage;
+	currentPage = data.currentPage;
+	
+	//设置分页状态值
+	$("#total").text(totalRows);
+	$("#current").text(currentPage);
+	$("#pageCount").text(totalPages);
+	if(isFirstPage){
+		$("#first").hide();
+		$("#previous").hide();
+	}
+	else{
+		$("#first").show();
+		$("#previous").show();
+	}
+	
+	if(isLastPage){
+		$("#next").hide();
+		$("#last").hide();
+	}
+	else{
+		$("#next").show();
+		$("#last").show();
+	}
+}
+
+//从后台取得数据绑定
+function bindData(page){
+	var param = {"pageIndex":page};   //获取页码参数
 	$.ajax({
 		url:"getblogs",
 		type:"post",
 		data:param,
 		datatype:"json",
 		success:function(data){
-			$.each(data,function(i,value){
+			UpdatePageStatus(data);  //调用更新分页标签状态函数		
+			$.each(data.list,function(i,value){	
 				/* 		迭代输出 */
 				$("#each").append("<tr id=\"tr_"+i+"\"><td>"+value.title+"</td>"+"<td>"+value.username+"</td>"+"<td>"+value.created_at+"</td>"+"<td><a href=\"/MavenTest/edit/show_blog?blogid\="+value.blogid+"\">编辑</a></td><td><input type=\"button\" value=\"删除\" id=\"delete_"+i+"\"></td></tr>");
 				/* 绑定delete事件 */
@@ -36,42 +75,64 @@ function init(page){
 							$("#tr_"+i).hide();
 						}
 					});
-										
+									
 				});
 			});
 		}
 	});
 }
 
-
-$(document).ready(function(){
-	var page = 1;
-	init(page);
-	
-	
+$(document).ready(function(){	
+	bindData(page);  //默认页码为1
+	//下一页
 	$("#next").click(function(){
 		$("#each  tr:not(:first)").remove();
-		init(++page);
+		bindData(++page);
+		UpdatePageStatus();
 	});
 	
+	//上一页
+	$("#previous").click(function(){
+		$("#each  tr:not(:first)").remove();
+		bindData(--page);
+		UpdatePageStatus();
+	});
+	
+	//末页
 	$("#last").click(function(){
 		$("#each  tr:not(:first)").remove();
-		init(--page);
+		page = totalPages;
+		bindData(page);
 	});
-
+	
+	//首页
+	$("#first").click(function(){
+		$("#each  tr:not(:first)").remove();
+		page = 1;
+		bindData(page)
+	});
+	
+	//跳转
+	$("#jump").click(function(){
+		$("#each  tr:not(:first)").remove();
+		jumpPage = $("#jumpPage").val();
+		if (jumpPage <= totalPages && jumpPage >=0){
+			page = jumpPage;
+			bindData(page);
+		}
+		else{
+			alert("输入有误！");
+			bindData(page);
+		}
+	});
 });
 
 </script>
-<style type="text/css"> 
-.align-center{ 
-margin:0 auto; /* 居中 这个是必须的，，其它的属性非必须 */ 
-width:450px; /* 给个宽度 顶到浏览器的两边就看不出居中效果了 */ 
-text-align:center; /* 文字等内容居中 */ 
-} 
-</style> 
+
+
 </head>
 <body>
-<div class="align-center">
+
 	<div>
 	     <a href="/MavenTest/manage/comments" >评论</a>  
 	     <a href="/MavenTest/manage/blogs" >日志</a>
@@ -88,13 +149,7 @@ text-align:center; /* 文字等内容居中 */
 	    </tr>
 	</table>
 	
-	<input type="button"  id="last" value="上一页">
-	<input type="button"  id="next" value="下一页">
-</div>
-
-
-
-
+<%@include file = "pageStatus.jsp" %>  
 
 </body>
 </html>
