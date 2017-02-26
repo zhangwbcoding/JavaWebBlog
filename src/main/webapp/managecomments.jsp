@@ -7,7 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>评论管理</title>
+<link href="//cdn.bootcss.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"> 
 <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">	
 var page = 1;
 var currentPage = page;
@@ -134,22 +136,41 @@ $(document).ready(function(){
 </head>
 <body>
 
-<div>
-     <a href="/MavenTest/manage/comments" >评论</a>  
-     <a href="/MavenTest/manage/blogs" >日志</a>
-     <a href="/MavenTest/manage/users" >用户</a>   
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<ul class="breadcrumb">
+				<li class="active">
+					 <a href="/MavenTest/manage/comments" >评论</a> 
+				</li>
+				<li>
+					 <a href="/MavenTest/manage/blogs" >日志</a>
+				</li>
+				<li>
+					 <a href="/MavenTest/manage/users" >用户</a> 
+				</li>
+			</ul>
+			<table class="table table-striped" id="each">
+				<thead>
+					<tr>
+						<th>博客标题</th>     
+						<th>评论内容</th>
+						<th>用户名</th>       
+						<th>评论时间</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
+				<%@include file = "pageStatus.jsp" %>
 </div>
 
-<table border="1" id="each">
-    <tr>
-      <th>博客标题</th>     
-      <th>评论内容</th>
-      <th>用户名</th>       
-      <th>评论时间</th>
-      <th>操作</th>
-    </tr>
-</table>
 
-<%@include file = "pageStatus.jsp" %>
+
+
+
 </body>
 </html>

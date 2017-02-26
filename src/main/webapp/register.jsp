@@ -6,14 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>注册</title>
-<style type="text/css"> 
-.align-center{ 
-margin:0 auto;
-width:290px;  
-text-align:center; 
-} 
-</style> 
+<link href="//cdn.bootcss.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">  
 <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#in_uname").blur(function(){
@@ -35,21 +30,43 @@ text-align:center;
 <s:a href="/MavenTest/main" >首页</s:a>
 <s:a href="/MavenTest/login.jsp" >登录</s:a>
 
-<div class="align-center">
-	<h3>
-	欢迎注册
-	</h3>
-	<div>
-	    <s:form action="register" >  
-	        <s:textfield name="user.username" label="用户名" id="in_uname"></s:textfield> <s:fielderror fieldName="username"/>
-	        <s:password name="user.password" label="密码"></s:password> <s:fielderror fieldName="password"/>
-	        <s:password name="passwordr" label="重复密码"></s:password>           
-	        <s:submit value="注册"></s:submit>  
-	    </s:form> 
-    </div>
-    <div id="msg">
-    </div>
-    
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<h3 class="text-center" >
+					欢迎注册
+			</h3>
+			<form class="form-horizontal"  action="register">
+				<div class="form-group">
+					 <label for="inputEmail3" class="col-sm-5 control-label">用户名</label>
+					<div class="col-sm-3">
+						<input  class="form-control" id="in_uname"  name="user.username"/><span id="msg"></span><s:fielderror fieldName="username"/>
+					</div>
+				</div>
+				<div class="form-group">
+					 <label for="inputPassword3" class="col-sm-5 control-label">密码</label>
+					<div class="col-sm-3">
+						<input type="password" class="form-control"  name="user.password"/><s:fielderror fieldName="password"/>
+					</div>
+				</div>
+				<div class="form-group">
+					 <label for="inputPassword3" class="col-sm-5 control-label">重复密码</label>
+					<div class="col-sm-3">
+						<input type="password" class="form-control"  name="passwordr"/>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-sm-offset-6 col-sm-10">
+						 <button type="submit" class="btn btn-default">注册</button>
+					</div>
+				</div>
+			</form>
+			    
+		</div>
+	</div>
 </div>
+
+
 </body>
 </html>

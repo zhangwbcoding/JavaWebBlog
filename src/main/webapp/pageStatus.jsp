@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="//cdn.bootcss.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"> 
+<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="navigation"> 
+<div class="col-sm-offset-3 col-sm-7"> 
 共<label id="total"></label>条数据 第[<label id="current"></label>]页/共[<label id="pageCount">0</label>]页 
 <a id="first" href="#">首页</a> <a id="previous" href="#">上一页</a> <a id="next" href="#"> 
 下一页</a> <a id="last" href="#">末页</a> 

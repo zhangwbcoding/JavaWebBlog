@@ -4,15 +4,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="//cdn.bootcss.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"> 
+
 </head>
 <body>
-            <a href="/MavenTest/main" >首页</a>
-            <a href="/MavenTest/newblog"> 创建日志</a>
-            <a href="https://github.com/zhangwbcoding/JavaWebBlog" target="_blank">源码 </a>
-            <a href="/MavenTest/manage/blogs">管理</a>
-            
-		<%
+<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
 
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<ul class="nav nav-tabs">
+				<li >
+					 <a href="/MavenTest/main" >首页</a>
+				</li>
+				<li>
+					 <a href="/MavenTest/newblog"> 创建日志</a>
+				</li>
+				<li>
+					 <a href="https://github.com/zhangwbcoding/JavaWebBlog" target="_blank">源码 </a>
+				</li>
+				<li class="disabled">
+					 <a href="/MavenTest/manage/blogs">管理</a>
+				</li>
+
+	<%
 			Cookie[] cookies= request.getCookies();
 		    String username=null;
 		    String userid=null;
@@ -34,18 +50,32 @@
 			    	}
 			    }
 			}%>
-			<% if (username!=null) {%>
-			<span>
-                        <a href="/MavenTest/user?userid=<%=(String)session.getAttribute("userid")%>">${username}</a>
-                        <a href="/MavenTest/loginout">登出</a>
-             </span>
-			<% }else { %>
-			<span>
-                   <a href="/MavenTest/login.jsp"> 登陆</a>
-                    <a href="/MavenTest/register.jsp"> 注册</a>
-            </span>
+				<% if (username!=null) {%>	
+						<li>
+							  <a href="/MavenTest/user?userid=<%=(String)session.getAttribute("userid")%>">${username}</a>
+						</li>
+						
+						<li>
+							  <a href="/MavenTest/loginout">登出</a>
+						</li>
+				<% }else { %>
+						<li>
+							 <a href="/MavenTest/login.jsp"> 登陆</a>
+						</li>
+						<li>
+							 <a href="/MavenTest/register.jsp"> 注册</a>
+						</li>
+						<li class="divider">
+						</li>
 
-           <% } %>
-           <hr>
+					<% } %>
+				</ul>
+
+		</div>
+	</div>    
+</div>      
+          
+          
+
 </body>
 </html>
